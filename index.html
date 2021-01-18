@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Minimal working example</title>
+</head>
+
+<body>
+  <label for="chatRoom">Chat Room: </label>
+  <select name="chatRoom" id="chatRoom">
+    <option value="Room A">Room A</option>
+    <!-- <option value="Room B">Room B</option> -->
+  </select>
+  <br />
+  <br />
+  <label for="clientId">ClientId: </label>
+  <input id="clientId" />
+  <br />
+  <br />
+  <label for="message">Message: </label>
+  <textarea id="message"></textarea>
+  <br />
+  <button id="sendButton">Send</button>
+  <br />
+  <div id="messages" />
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+
+    $(() => {
+      const newItem = (content) => {
+        const item = document.createElement('div');
+        item.innerText = content;
+        return item;
+      };
+
+      const messages = $('#messages');
+      const message = $('#message');
+      const sendButton = $('#sendButton');
+      const chatRoom = $('#chatRoom');
+      const socket = io();
+      socket.on('connect', () => {
+        messages.append(newItem(`Connected to ${chatRoom.val()}...`));
+      });
+      socket.on(chatRoom.val(), (msg) => {
+        console.log("here")
+        messages.append(newItem(`[${chatRoom.val()}](${msg.timestamp}) ${msg.clientId}: ${msg.message} `));
+      });
+
+      sendButton.click(() => {
+        $.post("http://localhost:3000", {
+          clientId: $('#clientId').val(),
+          message: message.val(),
+          chatRoom: chatRoom.val()
+        });
+        message.val('');
+      })
+    })
+  </script>
+</body>
+
+</html>

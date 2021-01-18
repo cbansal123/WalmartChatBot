@@ -1,0 +1,6 @@
+{
+  "serverPort": 3000,
+  "serverIP": "127.0.0.1",
+  "logFileLoc": "messages.log",
+  "logLevel": "debug"
+}
