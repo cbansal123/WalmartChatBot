@@ -8,7 +8,8 @@ const path = require('path'),
   logger = require('./logging.js');
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'));
@@ -28,5 +29,6 @@ app.post('/', (req, res) => {
 })
 
 server.listen(PORT, IP, () => {
+  console.log(`Listening on ${PORT}`);
   logger.debug(`Listening on ${PORT}`);
 })
