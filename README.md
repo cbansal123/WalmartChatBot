@@ -1,5 +1,7 @@
-# Walmart take home -- Chat Bot
-This is the walmart take home challenge. For this challenge the requirements were to create a chat bot server that clients can connect to and send messages to each other. I was able to incorporate following features:
+# Walmart take home - Chat Bot
+This is the walmart take home challenge. For this challenge the requirements were to create a chat bot server that clients can connect to and send messages to each other. 
+
+I was able to incorporate following features:
 * Connect a client to the server
 * Send a message to the server
 * The server relays messages to all connected clients, including a timestamp and name of the client sending the message
@@ -20,7 +22,7 @@ I did not get enough time to incorporate following features:
 ## Getting Started
 You can clone the project by running the below commnd.
 ```
-git clone 
+git clone https://github.com/cbansal123/WalmartChatBot
 ```
 You can update the config for server, port, logging level, or file location in config.json.
 
@@ -39,6 +41,7 @@ Please use following command to run the application.
 node index.js
 ```
 You can access the application on http://localhost:3000
+
 Once on the application, you can pick clientId and send messages which will be relayed to all clients connected to the server.
 
 
